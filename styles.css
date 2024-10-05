@@ -253,6 +253,61 @@ nav.scrolled {
     50% { transform: translateY(-10px); }
 }
 
+/* Document Downloads Section Styles */
+#downloads {
+    padding: 50px 0;
+    background-color: #f8f9fa; /* Light gray background */
+}
+
+#downloads h2 {
+    font-family: 'Noto Sans Sinhala', sans-serif; /* Sinhala Font */
+    color: #dc3545; /* Red */
+    font-size: 2.5em;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+#downloads p {
+    font-family: 'Noto Sans Sinhala', sans-serif;
+    font-size: 1.2em;
+    color: #2E373A;
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+#downloads .list-group {
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+#downloads .list-group-item {
+    font-family: 'Noto Sans Sinhala', sans-serif;
+    font-size: 1.1em;
+    color: #2E373A;
+    background-color: #ffffff; /* White background for items */
+    border: 1px solid #dc3545; /* Red border */
+    padding: 15px;
+    margin-bottom: 10px;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+#downloads .list-group-item:hover {
+    background-color: #dc3545; /* Red background on hover */
+    color: white;
+}
+
+#downloads .list-group-item a {
+    color: inherit;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+#downloads .list-group-item a:hover {
+    text-decoration: underline;
+}
+
+
+
 /* Footer */
 footer {
     background-color: #dc3545; /* Red */
