@@ -60,15 +60,26 @@ nav.scrolled {
 #hero {
     background-color: #dc3545; /* Red */
     color: white;
-    padding: 100px 0;
+    padding: 100px 0 10px 0;
     text-align: center;
     animation: fadeIn 2s ease-in-out;
     position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
 }
 
 #hero h1 {
     animation: textGlow 3s ease-in-out infinite;
+    margin-bottom: 20px;
 }
+
+#hero img {
+    max-width: 100px; /* Set max-width for the logo */
+    height: auto;
+}
+
 
 @keyframes fadeIn {
     0% { opacity: 0; }
@@ -352,4 +363,25 @@ footer {
         display: block;
         margin-bottom: 100px;
     }
+}
+
+footer {
+    background-color: #dc3545; /* Red */
+    color: white;
+    padding: 20px 0;
+    text-align: center;
+    font-size: 14px;
+}
+
+footer p {
+    margin: 5px 0;
+}
+
+footer a {
+    color: #ffc107; /* Gold */
+    text-decoration: none;
+}
+
+footer a:hover {
+    text-decoration: underline;
 }
