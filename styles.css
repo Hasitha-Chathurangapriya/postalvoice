@@ -76,7 +76,7 @@ nav.scrolled {
 }
 
 #hero img {
-    max-width: 100px; /* Set max-width for the logo */
+    max-width: 300px; /* Set max-width for the logo */
     height: auto;
 }
 
