@@ -1,335 +1,465 @@
 <!DOCTYPE html>
-<html lang="si ta">
-
+<html lang="si">
 <head>
-    <!-- Required Meta Tags -->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
+    <title>PostalVoice - Sri Lanka Postal Union</title>
+    
     <!-- SEO Meta Tags -->
-    <meta name="description"
-        content="සමස්ත ලංකා තැපැල් සහ විදුලි පණිවුඩ සේවක සංගමය - තැපැල් සහ විදුලි සේවකයින්ගේ අයිතීන් සඳහා වෘත්තීය සමිති">
-    <meta name="keywords"
-        content="PostalVoice,සමස්ත ලංකා, තැපැල් සේවක සංගමය, විදුලි පණිවුඩ, වෘත්තීය සමිති, Sri Lanka Postal Union, Tamil, Sinhala, Postal Services">
-    <meta name="author" content="PostalVoice">
-    <meta name="robots" content="index, follow">
-    <meta name="language" content="si, ta">
-    <meta property="og:title" content="postalvoice">
-    <meta property="og:description"
-        content="තැපැල් සහ විදුලි සේවකයින්ගේ අයිතීන් සඳහා වන වෘත්තීය සමිති, සම්බන්ධ වන්න, ගණනය කිරීම, ලේඛන භාගත කිරීම.">
-    <meta property="og:image" content="logo.png">
-    <meta property="og:url" content="http://postalvoice63.com/">
-    <meta property="og:type" content="website">
-    <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="සමස්ත ලංකා තැපැල් සහ විදුලි පණිවුඩ සේවක සංගමය">
-    <meta name="twitter:description" content="Sri Lanka Postal Union Website for Postal Workers.">
-    <meta name="twitter:image" content="logo.png">
-    <meta name="twitter:site" content="@PostalVoice">
+    <meta name="description" content="සමස්ත ලංකා තැපැල් සහ විදුලි පණිවුඩ සේවක සංගමය - තැපැල් සහ විදුලි සේවකයින්ගේ අයිතීන් සඳහා වෘත්තීය සමිති">
+    <meta name="keywords" content="PostalVoice, Sri Lanka Postal Union, Postal Workers, Gratuity Calculator">
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Noto+Sans+Sinhala:wght@400;700&display=swap" rel="stylesheet">
+    
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
 
-    <title>PostalVoice - සමස්ත ලංකා තැපැල් සහ විදුලි පණිවුඩ සේවක සංගමය</title>
-    <link rel="stylesheet" href="styles.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.1.3/css/bootstrap.min.css">
+    <script>
+        document.documentElement.classList.add('js-enabled');
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'Noto Sans Sinhala', 'sans-serif'],
+                    },
+                    colors: {
+                        postal: {
+                            red: '#e11d48',
+                            dark: '#1e293b',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        html { scroll-behavior: smooth; }
+        .glass-card { background: rgba(255, 255, 255, 0.8); backdrop-filter: blur(12px); border: 1px solid rgba(255, 255, 255, 0.3); }
+        .hero-overlay { background: linear-gradient(to bottom, rgba(0,0,0,0.4), rgba(0,0,0,0.7)); }
+        
+        /* Animations */
+        .fade-in { animation: fadeIn 1s ease-out forwards; }
+        .fade-in-up { animation: fadeInUp 1s ease-out forwards; opacity: 0; }
+        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+        @keyframes fadeInUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
+        
+        .slide-item { display: none; }
+        .slide-item.active { display: block; animation: scaleIn 1.5s ease-out; }
+        @keyframes scaleIn { from { transform: scale(1.1); opacity: 0; } to { transform: scale(1); opacity: 1; } }
+        
+        /* Reveal on scroll - Progressive Enhancement */
+        .reveal { opacity: 1; transform: translateY(0); transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1); }
+        .reveal.to-reveal { opacity: 0; transform: translateY(30px); }
+        .reveal.active { opacity: 1 !important; transform: translateY(0) !important; }
+    </style>
 </head>
-
-<body>
+<body class="bg-white text-slate-900 font-sans">
 
     <!-- Navigation -->
-    <nav class="navbar navbar-expand-lg navbar-light fixed-top" id="navbar">
-        <div class="container">
-            <a class="navbar-brand" href="#">තැපැල් හඬ</a>
-            <div class="collapse navbar-collapse">
-                <ul class="navbar-nav ms-auto">
-                    <!-- <li class="nav-item"><a class="nav-link" href="#home">මුල් පිටුව</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#about">අප ගැන</a></li> -->
-                    <li class="nav-item"><a class="nav-link" href="#contact">සම්බන්ධ වන්න</a></li>
-                </ul>
+    <nav id="navbar" class="fixed top-0 w-full z-50 transition-all duration-300 py-5">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex justify-between items-center">
+            <div class="flex items-center gap-2">
+                <div class="w-10 h-10 bg-red-600 rounded-full flex items-center justify-center text-white font-bold text-xl">තැ</div>
+                <span id="nav-logo" class="text-xl font-bold text-white">තැපැල් හඬ</span>
+            </div>
+
+            <!-- Desktop Nav -->
+            <div class="hidden md:flex items-center gap-8">
+                <a href="#home" class="nav-link text-sm font-medium text-white/90 hover:text-red-500 transition-colors">මුල් පිටුව</a>
+                <a href="#map-presence" class="nav-link text-sm font-medium text-white/90 hover:text-red-500 transition-colors">අපගේ ව්‍යාප්තිය</a>
+                <a href="#calculation" class="nav-link text-sm font-medium text-white/90 hover:text-red-500 transition-colors">ගණනය කිරීම්</a>
+                <a href="#downloads" class="nav-link text-sm font-medium text-white/90 hover:text-red-500 transition-colors">භාගත කිරීම්</a>
+                
+                <!-- Language Switcher -->
+                <div class="flex items-center gap-2 bg-white/10 backdrop-blur-md rounded-lg p-1 border border-white/20">
+                    <button class="px-2 py-1 text-[10px] font-bold rounded bg-red-600 text-white">SI</button>
+                    <button class="px-2 py-1 text-[10px] font-bold rounded text-white/60 hover:text-white transition-colors">TA</button>
+                    <button class="px-2 py-1 text-[10px] font-bold rounded text-white/60 hover:text-white transition-colors">EN</button>
+                </div>
+
+                <a href="https://www.whatsapp.com/channel/0029VarHjeK84Om8ATE4Co10" target="_blank" class="bg-red-600 text-white px-5 py-2 rounded-full text-sm font-semibold hover:bg-red-700 transition-all shadow-lg shadow-red-600/20">
+                    WhatsApp සමූහය
+                </a>
+            </div>
+
+            <!-- Mobile Toggle -->
+            <button class="md:hidden text-white" id="mobile-menu-btn">
+                <i data-lucide="menu" id="menu-icon"></i>
+            </button>
+        </div>
+
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="hidden absolute top-full left-0 w-full bg-white shadow-xl border-t border-slate-100 p-4 md:hidden">
+            <div class="flex flex-col gap-4">
+                <a href="#home" class="mobile-link text-slate-600 font-medium py-2 border-b border-slate-50">මුල් පිටුව</a>
+                <a href="#map-presence" class="mobile-link text-slate-600 font-medium py-2 border-b border-slate-50">අපගේ ව්‍යාප්තිය</a>
+                <a href="#calculation" class="mobile-link text-slate-600 font-medium py-2 border-b border-slate-50">ගණනය කිරීම්</a>
+                <a href="#downloads" class="mobile-link text-slate-600 font-medium py-2 border-b border-slate-50">භාගත කිරීම්</a>
+                <a href="#contact" class="mobile-link text-slate-600 font-medium py-2 border-b border-slate-50">සම්බන්ධ වන්න</a>
             </div>
         </div>
     </nav>
 
     <!-- Hero Section -->
-    <section id="hero">
-        <div class="container text-center">
-            <h1>සමස්ත ලංකා තැපැල් සහ විදුලි පණිවුඩ සේවක සංගමය</h1>
-            <img src="logo.png" alt="Logo" class="img-fluid mt-3">
-            <p>ලියාපදිංචි අංකය - 333</p>
+    <section id="home" class="relative h-screen min-h-[600px] flex items-center overflow-hidden">
+        <div class="absolute inset-0 z-0" id="slideshow">
+            <div class="slide-item active absolute inset-0">
+                <div class="absolute inset-0 hero-overlay z-10"></div>
+                <img src="https://picsum.photos/seed/postal1/1920/1080" class="w-full h-full object-cover" alt="Slide 1">
+            </div>
+            <div class="slide-item absolute inset-0">
+                <div class="absolute inset-0 hero-overlay z-10"></div>
+                <img src="https://picsum.photos/seed/postal2/1920/1080" class="w-full h-full object-cover" alt="Slide 2">
+            </div>
+            <div class="slide-item absolute inset-0">
+                <div class="absolute inset-0 hero-overlay z-10"></div>
+                <img src="https://picsum.photos/seed/postal3/1920/1080" class="w-full h-full object-cover" alt="Slide 3">
+            </div>
+        </div>
+
+        <div class="container mx-auto px-4 relative z-20 text-center text-white">
+            <div class="fade-in">
+                <span class="inline-block bg-red-600 text-white px-4 py-1 rounded-full text-xs font-bold uppercase tracking-widest mb-6">
+                    ලියාපදිංචි අංකය - 333
+                </span>
+                <h1 class="text-4xl md:text-6xl lg:text-7xl font-bold leading-tight mb-6 max-w-4xl mx-auto">
+                    සමස්ත ලංකා තැපැල් සහ විදුලි පණිවුඩ සේවක සංගමය
+                </h1>
+                <p class="text-lg md:text-xl text-white/80 mb-10 max-w-2xl mx-auto font-light">
+                    තැපැල් සහ විදුලි සේවකයින්ගේ අයිතීන් වෙනුවෙන් පෙනී සිටින ශක්තිමත් වෘත්තීය සමිතිය.
+                </p>
+                <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                    <a href="#calculation" class="bg-red-600 hover:bg-red-700 text-white px-8 py-4 rounded-xl font-bold transition-all flex items-center justify-center gap-2">
+                        <i data-lucide="calculator" class="w-5 h-5"></i> පාරිතෝෂික ගණනය කරන්න
+                    </a>
+                    <a href="#contact" class="bg-white/10 hover:bg-white/20 backdrop-blur-md text-white border border-white/30 px-8 py-4 rounded-xl font-bold transition-all flex items-center justify-center gap-2">
+                        <i data-lucide="message-square" class="w-5 h-5"></i> අප හා එක්වන්න
+                    </a>
+                </div>
+            </div>
         </div>
     </section>
 
-    <div class="slideshow-container">
-        <div class="mySlides fade">
-            <img src="1.jpeg" alt="Slide 1">
+    <!-- Union Presence Map Section -->
+    <section id="map-presence" class="py-24 bg-white overflow-hidden reveal">
+        <div class="container mx-auto px-4">
+            <div class="grid lg:grid-cols-2 gap-16 items-center">
+                <div class="order-2 lg:order-1">
+                    <h2 class="text-3xl md:text-4xl font-bold text-slate-900 mb-6">දිවයින පුරා අපගේ ව්‍යාප්තිය</h2>
+                    <p class="text-slate-600 mb-8 text-lg">සමස්ත ලංකා තැපැල් සහ විදුලි පණිවුඩ සේවක සංගමය දිවයිනේ සෑම ප්‍රධාන නගරයකම සහ තැපැල් කාර්යාලයකම තම සාමාජිකයින්ගේ අයිතීන් වෙනුවෙන් ක්‍රියාකාරීව පෙනී සිටී.</p>
+                    
+                    <div class="space-y-4">
+                        <div class="p-4 bg-slate-50 rounded-2xl border border-slate-100 flex items-center gap-4 hover:bg-red-50 hover:border-red-100 transition-all cursor-default group">
+                            <div class="w-10 h-10 bg-white rounded-xl flex items-center justify-center text-red-600 shadow-sm group-hover:bg-red-600 group-hover:text-white transition-all">
+                                <i data-lucide="map-pin" class="w-5 h-5"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-slate-800">ප්‍රධාන මූලස්ථානය</h4>
+                                <p class="text-slate-500 text-sm">කොළඹ 02</p>
+                            </div>
+                        </div>
+                        <div class="p-4 bg-slate-50 rounded-2xl border border-slate-100 flex items-center gap-4 hover:bg-red-50 hover:border-red-100 transition-all cursor-default group">
+                            <div class="w-10 h-10 bg-white rounded-xl flex items-center justify-center text-red-600 shadow-sm group-hover:bg-red-600 group-hover:text-white transition-all">
+                                <i data-lucide="users" class="w-5 h-5"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-slate-800">ප්‍රාදේශීය ශාඛා</h4>
+                                <p class="text-slate-500 text-sm">දිස්ත්‍රික්ක 25 පුරා විසිරුණු ශාඛා ජාලය</p>
+                            </div>
+                        </div>
+                        <div class="p-4 bg-slate-50 rounded-2xl border border-slate-100 flex items-center gap-4 hover:bg-red-50 hover:border-red-100 transition-all cursor-default group">
+                            <div class="w-10 h-10 bg-white rounded-xl flex items-center justify-center text-red-600 shadow-sm group-hover:bg-red-600 group-hover:text-white transition-all">
+                                <i data-lucide="award" class="w-5 h-5"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-slate-800">සාමාජිකත්වය</h4>
+                                <p class="text-slate-500 text-sm">දහස් සංඛ්‍යාත සක්‍රීය සාමාජික පිරිසක්</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="order-1 lg:order-2 relative flex justify-center">
+                    <!-- Stylized Sri Lanka Map with Markers -->
+                    <div class="relative w-full max-w-[400px] aspect-[1/2] bg-slate-50 rounded-[3rem] p-8 border border-slate-100 shadow-inner">
+                        <svg viewBox="0 0 200 400" class="w-full h-full drop-shadow-2xl">
+                            <!-- Simplified Sri Lanka Path -->
+                            <path d="M100,20 C120,30 140,60 150,100 C160,150 160,200 150,250 C140,300 120,350 100,380 C80,350 60,300 50,250 C40,200 40,150 50,100 C60,60 80,30 100,20 Z" fill="#f1f5f9" stroke="#cbd5e1" stroke-width="2"/>
+                            
+                            <!-- Markers -->
+                            <!-- Colombo -->
+                            <circle cx="65" cy="260" r="5" fill="#e11d48" class="animate-pulse">
+                                <title>කොළඹ (මූලස්ථානය)</title>
+                            </circle>
+                            <!-- Kandy -->
+                            <circle cx="100" cy="200" r="4" fill="#e11d48">
+                                <title>මහනුවර</title>
+                            </circle>
+                            <!-- Galle -->
+                            <circle cx="85" cy="350" r="4" fill="#e11d48">
+                                <title>ගාල්ල</title>
+                            </circle>
+                            <!-- Jaffna -->
+                            <circle cx="95" cy="50" r="4" fill="#e11d48">
+                                <title>යාපනය</title>
+                            </circle>
+                            <!-- Anuradhapura -->
+                            <circle cx="100" cy="130" r="4" fill="#e11d48">
+                                <title>අනුරාධපුරය</title>
+                            </circle>
+                            <!-- Badulla -->
+                            <circle cx="130" cy="240" r="4" fill="#e11d48">
+                                <title>බදුල්ල</title>
+                            </circle>
+                            <!-- Kurunegala -->
+                            <circle cx="85" cy="180" r="4" fill="#e11d48">
+                                <title>කුරුණෑගල</title>
+                            </circle>
+                            <!-- Ratnapura -->
+                            <circle cx="100" cy="280" r="4" fill="#e11d48">
+                                <title>රත්නපුරය</title>
+                            </circle>
+                        </svg>
+                        
+                        <!-- Floating Labels -->
+                        <div class="absolute top-[65%] left-[5%] bg-white px-3 py-1 rounded-full shadow-lg border border-slate-100 text-[10px] font-bold text-red-600">කොළඹ</div>
+                        <div class="absolute top-[12%] left-[45%] bg-white px-3 py-1 rounded-full shadow-lg border border-slate-100 text-[10px] font-bold text-slate-700">යාපනය</div>
+                        <div class="absolute top-[88%] left-[40%] bg-white px-3 py-1 rounded-full shadow-lg border border-slate-100 text-[10px] font-bold text-slate-700">ගාල්ල</div>
+                        <div class="absolute top-[50%] left-[55%] bg-white px-3 py-1 rounded-full shadow-lg border border-slate-100 text-[10px] font-bold text-slate-700">මහනුවර</div>
+                    </div>
+                </div>
+            </div>
         </div>
-
-        <div class="mySlides fade">
-            <img src="4.jpeg" alt="Slide 2">
-        </div>
-
-        <div class="mySlides fade">
-            <img src="6.jpeg" alt="Slide 3">
-        </div>
-
-         <!-- <div class="mySlides fade">
-            <img src="4.jpeg" alt="Slide 4">
-        </div>
-
-        <div class="mySlides fade">
-            <img src="5.jpeg" alt="Slide 5">
-        </div>
-
-        <div class="mySlides fade">
-            <img src="6.jpeg" alt="Slide 6">
-        </div> -->
-
-        <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
-        <a class="next" onclick="plusSlides(1)">&#10095;</a>
-    </div>
-
-    <div style="text-align:center">
-        <span class="dot" onclick="currentSlide(1)"></span>
-        <span class="dot" onclick="currentSlide(2)"></span>
-        <span class="dot" onclick="currentSlide(3)"></span>
-    </div>
-
-    <script>
-        let slideIndex = 1;
-        let autoSlideInterval;
-        showSlides(slideIndex);
-
-        function plusSlides(n) {
-            clearInterval(autoSlideInterval);
-            showSlides(slideIndex += n);
-            startAutoSlide();
-        }
-
-        function currentSlide(n) {
-            clearInterval(autoSlideInterval);
-            showSlides(slideIndex = n);
-            startAutoSlide();
-        }
-
-        function showSlides(n) {
-            let i;
-            let slides = document.getElementsByClassName("mySlides");
-            let dots = document.getElementsByClassName("dot");
-
-            if (n > slides.length) { slideIndex = 1 }
-            if (n < 1) { slideIndex = slides.length }
-
-            for (i = 0; i < slides.length; i++) {
-                slides[i].style.display = "none";
-            }
-
-            for (i = 0; i < dots.length; i++) {
-                dots[i].className = dots[i].className.replace(" active", "");
-            }
-
-            slides[slideIndex - 1].style.display = "block";
-            dots[slideIndex - 1].className += " active";
-        }
-
-        function startAutoSlide() {
-            autoSlideInterval = setInterval(() => {
-                plusSlides(1);
-            }, 3000); // Change slide every 3 seconds
-        }
-
-        // Start auto-slide when page loads
-        startAutoSlide();
-    </script>
-
-    <!-- About Section -->
-    <!-- <section id="about" class="content-section">
-        <div class="container">
-        </div>
-    </section> -->
+    </section>
 
     <!-- Calculation Section -->
-    <section id="calculation" class="content-section">
-        <div class="container">
-            <h3>පාරිතෝෂික ගණනය කිරීම</h3>
-            <hr>
-            <div class="container">
-                <form>
-                    <div class="form-group">
-                        <label for="year">සාමාජිකත්වය ලබාගත් වසර / உறுப்பினர் ஆண்டு :</label>
-                        <input type="text" class="form-control" id="year" required />
-                    </div>
-                    <div class="form-group">
-                        <label for="cal1">සාමාජිකත්වය ලබාගත් මාසය / உறுப்பினர் மாதம் :</label>
-                        <select class="form-control" id="cal1" required>
-                            <option>January</option>
-                            <option>February</option>
-                            <option>March</option>
-                            <option>April</option>
-                            <option>May</option>
-                            <option>June</option>
-                            <option>July</option>
-                            <option>August</option>
-                            <option>September</option>
-                            <option>October</option>
-                            <option>November</option>
-                            <option>December</option>
-                        </select>
-                    </div>
-                    <div class="form-group">
-                        <label for="year2">විශ්‍රාම යාමේ වර්ෂය / ஓய்வு பெற்ற ஆண்டு:</label>
-                        <input type="text" class="form-control" id="year2" required />
-                    </div>
-                    <div class="form-group">
-                        <label for="cal2">විශ්‍රාම යාමේ මාසය / ஓய்வூதிய மாதம்:</label>
-                        <select class="form-control" id="cal2" required>
-                            <option>January</option>
-                            <option>February</option>
-                            <option>March</option>
-                            <option>April</option>
-                            <option>May</option>
-                            <option>June</option>
-                            <option>July</option>
-                            <option>August</option>
-                            <option>September</option>
-                            <option>October</option>
-                            <option>November</option>
-                            <option>December</option>
-                        </select>
-                    </div>
-                    <button type="button" class="btn btn-primary" onclick="calculateResult()">
-                        Calculate
-                    </button>
-                </form>
-                <div id="result" class="alert-result"></div>
+    <section id="calculation" class="py-24 bg-slate-50 reveal">
+        <div class="container mx-auto px-4">
+            <div class="max-w-4xl mx-auto">
+                <div class="text-center mb-12">
+                    <h2 class="text-3xl md:text-4xl font-bold text-slate-900 mb-4">පාරිතෝෂික ගණනය කිරීම</h2>
+                    <p class="text-slate-600">සාමාජිකත්වය ලබාගත් වසර සහ විශ්‍රාම යන වසර ඇතුළත් කර ඔබගේ පාරිතෝෂිකය ගණනය කරගන්න.</p>
+                </div>
+
+                <div class="bg-white rounded-3xl shadow-xl shadow-slate-200/50 p-8 md:p-12 border border-slate-100">
+                    <form class="space-y-8">
+                        <div class="grid md:grid-cols-2 gap-8">
+                            <!-- Joining Info -->
+                            <div class="space-y-6">
+                                <div class="form-group">
+                                    <label for="year" class="block text-sm font-medium text-slate-700 mb-2">සාමාජිකත්වය ලබාගත් වසර / உறுப்பினர் ஆண்டு :</label>
+                                    <input type="text" class="w-full px-4 py-3 rounded-xl border border-slate-200 focus:ring-2 focus:ring-red-600/20 focus:border-red-600 transition-all outline-none" id="year" required placeholder="Ex: 1995" />
+                                </div>
+                                <div class="form-group">
+                                    <label for="cal1" class="block text-sm font-medium text-slate-700 mb-2">සාමාජිකත්වය ලබාගත් මාසය / உறுப்பினர் மாதம் :</label>
+                                    <select class="w-full px-4 py-3 rounded-xl border border-slate-200 focus:ring-2 focus:ring-red-600/20 focus:border-red-600 transition-all outline-none" id="cal1" required>
+                                        <option>January</option>
+                                        <option>February</option>
+                                        <option>March</option>
+                                        <option>April</option>
+                                        <option>May</option>
+                                        <option>June</option>
+                                        <option>July</option>
+                                        <option>August</option>
+                                        <option>September</option>
+                                        <option>October</option>
+                                        <option>November</option>
+                                        <option>December</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <!-- Retirement Info -->
+                            <div class="space-y-6">
+                                <div class="form-group">
+                                    <label for="year2" class="block text-sm font-medium text-slate-700 mb-2">විශ්රාම යාමේ වර්ෂය / ஓய்வு பெற்ற ஆண்டு:</label>
+                                    <input type="text" class="w-full px-4 py-3 rounded-xl border border-slate-200 focus:ring-2 focus:ring-red-600/20 focus:border-red-600 transition-all outline-none" id="year2" required placeholder="Ex: 2025" />
+                                </div>
+                                <div class="form-group">
+                                    <label for="cal2" class="block text-sm font-medium text-slate-700 mb-2">විශ්රාම යාමේ මාසය / ஓய்වූதிய மாதம்:</label>
+                                    <select class="w-full px-4 py-3 rounded-xl border border-slate-200 focus:ring-2 focus:ring-red-600/20 focus:border-red-600 transition-all outline-none" id="cal2" required>
+                                        <option>January</option>
+                                        <option>February</option>
+                                        <option>March</option>
+                                        <option>April</option>
+                                        <option>May</option>
+                                        <option>June</option>
+                                        <option>July</option>
+                                        <option>August</option>
+                                        <option>September</option>
+                                        <option>October</option>
+                                        <option>November</option>
+                                        <option>December</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="flex gap-4">
+                            <button type="button" class="flex-1 bg-slate-900 text-white py-4 rounded-xl font-bold hover:bg-slate-800 transition-all flex items-center justify-center gap-2 shadow-lg shadow-slate-900/20 active:scale-95" onclick="calculateResult()">
+                                <i data-lucide="calculator" class="w-5 h-5"></i> Calculate
+                            </button>
+                            <button type="button" class="px-6 bg-slate-100 text-slate-600 py-4 rounded-xl font-bold hover:bg-slate-200 transition-all active:scale-95" onclick="resetCalculator()">
+                                <i data-lucide="refresh-cw" class="w-5 h-5"></i>
+                            </button>
+                        </div>
+                    </form>
+                    <div id="result" class="mt-8 transition-all duration-500"></div>
+                </div>
             </div>
         </div>
     </section>
+
+    <!-- Downloads Section -->
+    <section id="downloads" class="py-24 bg-white reveal">
+        <div class="container mx-auto px-4">
+            <div class="max-w-4xl mx-auto">
+                <div class="flex items-center justify-between mb-12">
+                    <div>
+                        <h2 class="text-3xl font-bold text-slate-900">ලේඛන භාගත කිරීම්</h2>
+                        <p class="text-slate-500 mt-2">වැදගත් චක්‍රලේඛ සහ ආයතන සංග්‍රහ ලේඛන මෙතැනින් ලබාගන්න.</p>
+                    </div>
+                    <div class="hidden sm:block p-4 bg-slate-50 rounded-2xl text-red-600">
+                        <i data-lucide="download" class="w-8 h-8"></i>
+                    </div>
+                </div>
+
+                <div class="grid gap-4">
+                    <a href="Cir_PE_2024_07_S.pdf" download class="flex items-center justify-between p-5 bg-slate-50 border border-slate-100 rounded-2xl hover:bg-white hover:shadow-lg hover:shadow-slate-200/50 transition-all group">
+                        <div class="flex items-center gap-4">
+                            <div class="w-10 h-10 bg-white rounded-lg flex items-center justify-center text-red-600 shadow-sm">
+                                <i data-lucide="download" class="w-5 h-5"></i>
+                            </div>
+                            <span class="font-medium text-slate-700">තැපැල් ඡන්ද අයදුම් කිරීමේ චක්‍රලේඛය [2024]</span>
+                        </div>
+                        <i data-lucide="chevron-right" class="text-slate-300 group-hover:text-red-600 transition-colors"></i>
+                    </a>
+                    <a href="establishments-code-volume-i-2013(s).pdf" download class="flex items-center justify-between p-5 bg-slate-50 border border-slate-100 rounded-2xl hover:bg-white hover:shadow-lg hover:shadow-slate-200/50 transition-all group">
+                        <div class="flex items-center gap-4">
+                            <div class="w-10 h-10 bg-white rounded-lg flex items-center justify-center text-red-600 shadow-sm">
+                                <i data-lucide="download" class="w-5 h-5"></i>
+                            </div>
+                            <span class="font-medium text-slate-700">ආයතන සංග්‍රහය - 1 වැනි කාණ්ඩය [සිංහල]</span>
+                        </div>
+                        <i data-lucide="chevron-right" class="text-slate-300 group-hover:text-red-600 transition-colors"></i>
+                    </a>
+                    <a href="establishments-code-volume-ii-1999(s).pdf" download class="flex items-center justify-between p-5 bg-slate-50 border border-slate-100 rounded-2xl hover:bg-white hover:shadow-lg hover:shadow-slate-200/50 transition-all group">
+                        <div class="flex items-center gap-4">
+                            <div class="w-10 h-10 bg-white rounded-lg flex items-center justify-center text-red-600 shadow-sm">
+                                <i data-lucide="download" class="w-5 h-5"></i>
+                            </div>
+                            <span class="font-medium text-slate-700">ආයතන සංග්‍රහය - 2 වැනි කාණ්ඩය [සිංහල]</span>
+                        </div>
+                        <i data-lucide="chevron-right" class="text-slate-300 group-hover:text-red-600 transition-colors"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- Back to Top Button -->
+    <button id="backToTop" class="fixed bottom-8 right-8 w-12 h-12 bg-red-600 text-white rounded-full shadow-xl flex items-center justify-center opacity-0 invisible transition-all hover:bg-red-700 z-50">
+        <i data-lucide="arrow-up" class="w-6 h-6"></i>
+    </button>
 
     <!-- Contact Section -->
-    <section id="contact" class="content-section">
-        <div class="container">
-            <h2>සම්බන්ධ වන්න</h2>
-            <p>ඔබගේ ප්‍රශ්න හෝ අදහස් අපට යොමු කරන්න.</p>
-            <!-- Contact Form -->
-            <!-- Contact Form -->
-            <form class="contact-form" id="contactForm" onsubmit="sendWhatsApp(event)">
-                <div class="mb-3">
-                    <label for="name" class="form-label">ඔබගේ නම / உங்கள் பெயர்:</label>
-                    <input type="text" class="form-control" id="name" required>
+    <section id="contact" class="py-24 bg-slate-900 text-white overflow-hidden relative reveal">
+        <div class="absolute top-0 right-0 w-1/2 h-full bg-red-600/5 -skew-x-12 translate-x-1/4"></div>
+        <div class="container mx-auto px-4 relative z-10">
+            <div class="grid lg:grid-cols-2 gap-16 items-center">
+                <div>
+                    <h2 class="text-4xl font-bold mb-6">අප හා සම්බන්ධ වන්න</h2>
+                    <p class="text-white/60 text-lg mb-10">ඔබගේ ගැටළු හෝ අදහස් අපට යොමු කරන්න. අපගේ කණ්ඩායම ඔබට සහාය වීමට සැදී පැහැදී සිටී.</p>
+                    <div class="space-y-8">
+                        <div class="flex items-start gap-4">
+                            <div class="w-12 h-12 bg-white/5 rounded-2xl flex items-center justify-center text-red-500 border border-white/10">
+                                <i data-lucide="map-pin"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-lg">ලිපිනය</h4>
+                                <p class="text-white/50">63, සෝන්ඩර්ස් කෝට්, කොළඹ - 02.</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start gap-4">
+                            <div class="w-12 h-12 bg-white/5 rounded-2xl flex items-center justify-center text-red-500 border border-white/10">
+                                <i data-lucide="mail"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-lg">විද්‍යුත් තැපෑල</h4>
+                                <a href="mailto:postalvoice63@gmail.com" class="text-white/50 hover:text-red-500 transition-colors">postalvoice63@gmail.com</a>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-                <div class="mb-3">
-                    <label for="MembershipNo" class="form-label">සාමාජික අංකය / உறுப்பினர் எண்:</label>
-                    <input type="text" class="form-control" id="MembershipNo" required>
-                </div>
-                <div class="mb-3">
-                    <label for="PostOfficeName" class="form-label">තැපැල් කාර්යාලය / தபால் அலுவலகம்:</label>
-                    <input type="text" class="form-control" id="PostOfficeName" required>
-                </div>
-                <div class="mb-3">
-                    <label for="ControlOffice" class="form-label">පාලන කාර්යාලය / கட்டுப்பாட்டு அலுவலகம்:</label>
-                    <input type="text" class="form-control" id="ControlOffice" required>
-                </div>
-                <div class="mb-3">
-                    <label for="tel" class="form-label">දුරකථන අංකය / தொலைபேசி எண்:</label>
-                    <input type="text" class="form-control" id="tel">
-                </div>
-                <div class="mb-3">
-                    <label for="message" class="form-label">පණිවිඩය / கேள்வி:</label>
-                    <textarea class="form-control" id="message" rows="3" required></textarea>
-                </div>
-                <button type="submit" class="btn btn-primary">යවන්න</button>
-            </form>
 
-
-            <!-- WhatsApp Section -->
-            <div class="whatsapp mt-5">
-                <i class="fab fa-whatsapp"></i>
-                <a href="https://www.whatsapp.com/channel/0029VarHjeK84Om8ATE4Co10" target="_blank">WhatsApp මඟින්
-                    සම්බන්ධ වන්න</a>
+                <div class="bg-white/5 backdrop-blur-xl border border-white/10 p-8 md:p-10 rounded-[2rem]">
+                    <form id="contactForm" class="space-y-5">
+                        <div class="grid sm:grid-cols-2 gap-5">
+                            <div>
+                                <label class="block text-sm font-medium text-white/70 mb-2">නම</label>
+                                <input type="text" id="name" required class="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 focus:ring-2 focus:ring-red-600 outline-none transition-all">
+                            </div>
+                            <div>
+                                <label class="block text-sm font-medium text-white/70 mb-2">සාමාජික අංකය</label>
+                                <input type="text" id="membershipNo" required class="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 focus:ring-2 focus:ring-red-600 outline-none transition-all">
+                            </div>
+                        </div>
+                        <div class="grid sm:grid-cols-2 gap-5">
+                            <div>
+                                <label class="block text-sm font-medium text-white/70 mb-2">තැපැල් කාර්යාලය</label>
+                                <input type="text" id="postOffice" required class="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 focus:ring-2 focus:ring-red-600 outline-none transition-all">
+                            </div>
+                            <div>
+                                <label class="block text-sm font-medium text-white/70 mb-2">දුරකථන අංකය</label>
+                                <input type="tel" id="tel" class="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 focus:ring-2 focus:ring-red-600 outline-none transition-all">
+                            </div>
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium text-white/70 mb-2">පණිවිඩය</label>
+                            <textarea id="message" rows="4" required class="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 focus:ring-2 focus:ring-red-600 outline-none transition-all resize-none"></textarea>
+                        </div>
+                        <button type="submit" class="w-full bg-red-600 hover:bg-red-700 text-white py-4 rounded-xl font-bold transition-all flex items-center justify-center gap-2">
+                            <i data-lucide="message-square" class="w-5 h-5"></i> WhatsApp මඟින් යවන්න
+                        </button>
+                    </form>
+                </div>
             </div>
-        </div>
-    </section>
-
-    <!-- Document Downloads Section -->
-    <section id="downloads" class="content-section mt-5">
-        <div class="container">
-            <h2>ලේඛන භාගත කිරීම්</h2>
-            <p>ඔබට පහත ලේඛන ලබා ගත හැක:</p>
-            <ul class="list-group">
-                <li class="list-group-item">
-                    <a href="Cir_PE_2024_07_S.pdf" download>තැපැල් ඡන්ද අයදුම් කිරීම පිලිබඳ වූ
-                        චක්‍රලේඛය[පාර්ලිමේන්තු මැතිවරණය - 2024]</a>
-                </li>
-                <li class="list-group-item">
-                    <a href="establishments-code-volume-i-2013(s).pdf" download>ආයතන සංග්‍රහය - 1 වැනි කාණ්ඩය [සිංහල
-                        මාධ්‍ය]</a>
-                </li>
-                <li class="list-group-item">
-                    <a href="establishments-code-volume-i-2013(t).pdf" download>ආයතන සංග්‍රහය - 1 වැනි කාණ්ඩය [Tamil
-                        media]</a>
-                </li>
-                <li class="list-group-item">
-                    <a href="establishments-code-volume-ii-1999(s).pdf" download>ආයතන සංග්‍රහය - 2 වැනි කාණ්ඩය [සිංහල
-                        මාධ්‍ය]</a>
-                </li>
-                <li class="list-group-item">
-                    <a href="establishments-code-volume-ii-1999(t).pdf" download>ආයතන සංග්‍රහය - 2 වැනි කාණ්ඩය [Tamil
-                        media]</a>
-                </li>
-            </ul>
         </div>
     </section>
 
     <!-- Map Section -->
-    <div class="map-container">
-        <iframe
-            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3960.7329982115743!2d79.84862577480963!3d6.922487693077205!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3ae2593e3175c195%3A0xbf06d35dbf630ed4!2sEl%20Shaddai%20Tailors%20%26%20Textiles!5e0!3m2!1sen!2slk!4v1728143071503!5m2!1sen!2slk"
-            width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
-    </div>
+    <section class="h-[450px] w-full grayscale hover:grayscale-0 transition-all duration-700">
+        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3960.7329982115743!2d79.84862577480963!3d6.922487693077205!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3ae2593e3175c195%3A0xbf06d35dbf630ed4!2sEl%20Shaddai%20Tailors%20%26%20Textiles!5e0!3m2!1sen!2slk!4v1728143071503!5m2!1sen!2slk" width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+    </section>
 
     <!-- Footer -->
-    <footer>
-        <p>© 2024 සමස්ත ලංකා තැපැල් සහ විදුලි පණිවුඩ සේවක සංගමය</p>
-        <p>ලිපිනය / முகவரி:</p>
-        <p>63, සෝන්ඩර්ස් කෝට්, කොළඹ - 02.<br>
-            63, சோண்டர்ஸ் கோட், கொழும்பு - 02.</p>
-        <p>Email: <a href="mailto:postalvoice63@gmail.com">postalvoice63@gmail.com</a></p>
+    <footer class="bg-slate-950 text-white py-12 border-t border-white/5">
+        <div class="container mx-auto px-4 text-center md:text-left">
+            <div class="flex flex-col md:flex-row justify-between items-center gap-8">
+                <div class="flex items-center gap-3">
+                    <div class="w-12 h-12 bg-red-600 rounded-full flex items-center justify-center text-white font-bold text-2xl">තැ</div>
+                    <div>
+                        <h3 class="text-xl font-bold">තැපැල් හඬ</h3>
+                        <p class="text-white/40 text-sm">© 2024 සමස්ත ලංකා තැපැල් සහ විදුලි පණිවුඩ සේවක සංගමය</p>
+                    </div>
+                </div>
+                <div class="flex gap-6">
+                    <a href="#" class="w-10 h-10 bg-white/5 rounded-full flex items-center justify-center hover:bg-red-600 transition-all"><i data-lucide="phone" class="w-5 h-5"></i></a>
+                    <a href="#" class="w-10 h-10 bg-white/5 rounded-full flex items-center justify-center hover:bg-red-600 transition-all"><i data-lucide="mail" class="w-5 h-5"></i></a>
+                </div>
+            </div>
+        </div>
     </footer>
 
-
-    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.1.3/js/bootstrap.bundle.min.js"></script>
     <script src="scripts.js"></script>
-    <script>
-        function sendWhatsApp(event) {
-            event.preventDefault(); // Prevent the form from refreshing the page
-
-            // Get the form values
-            var name = document.getElementById("name").value;
-            var membershipNo = document.getElementById("MembershipNo").value;
-            var postOfficeName = document.getElementById("PostOfficeName").value;
-            var controlOffice = document.getElementById("ControlOffice").value;
-            var tel = document.getElementById("tel").value;
-            var message = document.getElementById("message").value;
-
-            // Construct the WhatsApp message
-            var whatsappMessage =
-                "ඔබගේ නම: " + name + "%0A" +
-                "සාමාජික අංකය: " + membershipNo + "%0A" +
-                "තැපැල් කාර්යාලය: " + postOfficeName + "%0A" +
-                "පාලන කාර්යාලය: " + controlOffice + "%0A" +
-                "දුරකථන අංකය: " + tel + "%0A" +
-                "පණිවිඩය: " + message;
-
-            // WhatsApp number to send to (use international format without '+')
-            var whatsappNumber = "94720123910"; // Replace with the WhatsApp number you want to send to
-
-            // Construct the WhatsApp URL
-            var whatsappURL = "https://wa.me/" + whatsappNumber + "?text=" + whatsappMessage;
-
-            // Redirect the user to the WhatsApp URL
-            window.open(whatsappURL, '_blank');
-        }
-    </script>
-
-
 </body>
-
 </html>
+
