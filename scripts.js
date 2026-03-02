@@ -105,7 +105,7 @@ document.addEventListener('DOMContentLoaded', () => {
             const message = messageEl.value;
 
             const whatsappMessage = `ඔබගේ නම: ${name}%0Aසාමාජික අංකය: ${membershipNo}%0Aතැපැල් කාර්යාලය: ${postOffice}%0Aදුරකථන අංකය: ${tel}%0Aපණිවිඩය: ${message}`;
-            window.open(`https://wa.me/94720123910?text=${whatsappMessage}`, '_blank');
+            window.open(`https://wa.me/94770533546?text=${whatsappMessage}`, '_blank');
         });
     }
 
@@ -407,3 +407,4 @@ function resetCalculator() {
         }, 500);
     }
 }
+
