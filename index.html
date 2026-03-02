@@ -147,97 +147,6 @@
         </div>
     </section>
 
-    <!-- Union Presence Map Section -->
-    <section id="map-presence" class="py-24 bg-white overflow-hidden reveal">
-        <div class="container mx-auto px-4">
-            <div class="grid lg:grid-cols-2 gap-16 items-center">
-                <div class="order-2 lg:order-1">
-                    <h2 class="text-3xl md:text-4xl font-bold text-slate-900 mb-6">දිවයින පුරා අපගේ ව්‍යාප්තිය</h2>
-                    <p class="text-slate-600 mb-8 text-lg">සමස්ත ලංකා තැපැල් සහ විදුලි පණිවුඩ සේවක සංගමය දිවයිනේ සෑම ප්‍රධාන නගරයකම සහ තැපැල් කාර්යාලයකම තම සාමාජිකයින්ගේ අයිතීන් වෙනුවෙන් ක්‍රියාකාරීව පෙනී සිටී.</p>
-                    
-                    <div class="space-y-4">
-                        <div class="p-4 bg-slate-50 rounded-2xl border border-slate-100 flex items-center gap-4 hover:bg-red-50 hover:border-red-100 transition-all cursor-default group">
-                            <div class="w-10 h-10 bg-white rounded-xl flex items-center justify-center text-red-600 shadow-sm group-hover:bg-red-600 group-hover:text-white transition-all">
-                                <i data-lucide="map-pin" class="w-5 h-5"></i>
-                            </div>
-                            <div>
-                                <h4 class="font-bold text-slate-800">ප්‍රධාන මූලස්ථානය</h4>
-                                <p class="text-slate-500 text-sm">කොළඹ 02</p>
-                            </div>
-                        </div>
-                        <div class="p-4 bg-slate-50 rounded-2xl border border-slate-100 flex items-center gap-4 hover:bg-red-50 hover:border-red-100 transition-all cursor-default group">
-                            <div class="w-10 h-10 bg-white rounded-xl flex items-center justify-center text-red-600 shadow-sm group-hover:bg-red-600 group-hover:text-white transition-all">
-                                <i data-lucide="users" class="w-5 h-5"></i>
-                            </div>
-                            <div>
-                                <h4 class="font-bold text-slate-800">ප්‍රාදේශීය ශාඛා</h4>
-                                <p class="text-slate-500 text-sm">දිස්ත්‍රික්ක 25 පුරා විසිරුණු ශාඛා ජාලය</p>
-                            </div>
-                        </div>
-                        <div class="p-4 bg-slate-50 rounded-2xl border border-slate-100 flex items-center gap-4 hover:bg-red-50 hover:border-red-100 transition-all cursor-default group">
-                            <div class="w-10 h-10 bg-white rounded-xl flex items-center justify-center text-red-600 shadow-sm group-hover:bg-red-600 group-hover:text-white transition-all">
-                                <i data-lucide="award" class="w-5 h-5"></i>
-                            </div>
-                            <div>
-                                <h4 class="font-bold text-slate-800">සාමාජිකත්වය</h4>
-                                <p class="text-slate-500 text-sm">දහස් සංඛ්‍යාත සක්‍රීය සාමාජික පිරිසක්</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="order-1 lg:order-2 relative flex justify-center">
-                    <!-- Stylized Sri Lanka Map with Markers -->
-                    <div class="relative w-full max-w-[400px] aspect-[1/2] bg-slate-50 rounded-[3rem] p-8 border border-slate-100 shadow-inner">
-                        <svg viewBox="0 0 200 400" class="w-full h-full drop-shadow-2xl">
-                            <!-- Simplified Sri Lanka Path -->
-                            <path d="M100,20 C120,30 140,60 150,100 C160,150 160,200 150,250 C140,300 120,350 100,380 C80,350 60,300 50,250 C40,200 40,150 50,100 C60,60 80,30 100,20 Z" fill="#f1f5f9" stroke="#cbd5e1" stroke-width="2"/>
-                            
-                            <!-- Markers -->
-                            <!-- Colombo -->
-                            <circle cx="65" cy="260" r="5" fill="#e11d48" class="animate-pulse">
-                                <title>කොළඹ (මූලස්ථානය)</title>
-                            </circle>
-                            <!-- Kandy -->
-                            <circle cx="100" cy="200" r="4" fill="#e11d48">
-                                <title>මහනුවර</title>
-                            </circle>
-                            <!-- Galle -->
-                            <circle cx="85" cy="350" r="4" fill="#e11d48">
-                                <title>ගාල්ල</title>
-                            </circle>
-                            <!-- Jaffna -->
-                            <circle cx="95" cy="50" r="4" fill="#e11d48">
-                                <title>යාපනය</title>
-                            </circle>
-                            <!-- Anuradhapura -->
-                            <circle cx="100" cy="130" r="4" fill="#e11d48">
-                                <title>අනුරාධපුරය</title>
-                            </circle>
-                            <!-- Badulla -->
-                            <circle cx="130" cy="240" r="4" fill="#e11d48">
-                                <title>බදුල්ල</title>
-                            </circle>
-                            <!-- Kurunegala -->
-                            <circle cx="85" cy="180" r="4" fill="#e11d48">
-                                <title>කුරුණෑගල</title>
-                            </circle>
-                            <!-- Ratnapura -->
-                            <circle cx="100" cy="280" r="4" fill="#e11d48">
-                                <title>රත්නපුරය</title>
-                            </circle>
-                        </svg>
-                        
-                        <!-- Floating Labels -->
-                        <div class="absolute top-[65%] left-[5%] bg-white px-3 py-1 rounded-full shadow-lg border border-slate-100 text-[10px] font-bold text-red-600">කොළඹ</div>
-                        <div class="absolute top-[12%] left-[45%] bg-white px-3 py-1 rounded-full shadow-lg border border-slate-100 text-[10px] font-bold text-slate-700">යාපනය</div>
-                        <div class="absolute top-[88%] left-[40%] bg-white px-3 py-1 rounded-full shadow-lg border border-slate-100 text-[10px] font-bold text-slate-700">ගාල්ල</div>
-                        <div class="absolute top-[50%] left-[55%] bg-white px-3 py-1 rounded-full shadow-lg border border-slate-100 text-[10px] font-bold text-slate-700">මහනුවර</div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
 
     <!-- Calculation Section -->
     <section id="calculation" class="py-24 bg-slate-50 reveal">
@@ -462,4 +371,5 @@
     <script src="scripts.js"></script>
 </body>
 </html>
+
 
